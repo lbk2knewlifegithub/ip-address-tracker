@@ -21,7 +21,7 @@ export class IpEntityMapper implements EntityMapper<IpEntity, Ip> {
       location: this.locationMapper(entity.location),
       timezone,
       isp,
-      coor: { lat, lng },
+      coordinate: { lat, lng },
     };
   }
 

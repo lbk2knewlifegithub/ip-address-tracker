@@ -5,5 +5,5 @@ export interface Ip {
   location: string;
   timezone: string;
   isp: string;
-  coor: Coordinate;
+  coordinate: Coordinate;
 }
