@@ -29,6 +29,7 @@ import { ipOrDomainValidator } from '../../validators';
       <!-- end input -->
 
       <button
+        [disabled]="searching"
         type="submit"
         class="absolute right-0 px-6 h-full bg-dark grid place-content-center place-items-center"
       >
