@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { IpApiActions, IpTrackerPageActions } from 'src/app/ip-tracker/actions';
+import { IpFakeRepo } from '../repo/ip-fake.repo';
 import { IpImplRepo } from '../repo/ip-impl.repo';
 import { IpRepo } from '../repo/ip.repo';
 

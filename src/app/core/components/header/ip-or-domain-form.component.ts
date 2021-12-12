@@ -16,15 +16,15 @@ import { ipOrDomainValidator } from '../../validators';
     <form
       (ngSubmit)="onSubmit($event)"
       [formGroup]="form"
-      class=" relative flex rounded-xl shadow-lg  overflow-hidden w-full"
+      class=" relative flex rounded-xl shadow-lg overflow-hidden w-full"
     >
       <!-- input -->
       <input
         [value]="query"
-        class="h-full overflow-hidden text-base py-4 pl-4 pr-20 w-full"
+        class="text-base py-5 pl-4 pr-20 w-full"
         formControlName="ipOrDomain"
         type="text"
-        placeholder="Search for any IP adress or domain"
+        placeholder="Search for any IP address or domain"
       />
       <!-- end input -->
 
