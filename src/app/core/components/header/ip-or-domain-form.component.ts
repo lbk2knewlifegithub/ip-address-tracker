@@ -2,10 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
+  OnInit,
   Output
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { ipOrDomainValidator } from '../../validators';
 
 @Component({
@@ -20,6 +21,7 @@ import { ipOrDomainValidator } from '../../validators';
       <!-- input -->
       <input
         #input
+        [value]="query"
         class="border-none h-full text-base py-4 pl-4 pr-20 w-full"
         formControlName="ipOrDomain"
         type="text"
@@ -33,7 +35,7 @@ import { ipOrDomainValidator } from '../../validators';
       >
         <!--      arrow right-->
         <img
-          *ngIf="!(searching$ | async); else loading"
+          *ngIf="!searching; else loading"
           src="/assets/images/icon-arrow.svg"
           alt="Arrow"
         />
@@ -49,6 +51,10 @@ import { ipOrDomainValidator } from '../../validators';
 
     <!-- errors -->
     <div class="text-red-500 font-semibold italic text-left">
+      <!-- server return error -->
+      <p *ngIf="error">{{ error }}</p>
+      <!-- end server return error -->
+
       <!-- required -->
       <p
         *ngIf="ipOrDomainFormControl.touched && ipOrDomainFormControl.errors?.['required']"
@@ -60,33 +66,42 @@ import { ipOrDomainValidator } from '../../validators';
 
       <!-- ipv4 or domain invalid -->
       <p
-        *ngIf="ipOrDomainFormControl.touched && ipOrDomainFormControl.errors?.['ipv4OrDomain']"
+        *ngIf="ipOrDomainFormControl.touched && ipOrDomainFormControl.errors?.['ipOrDomain']"
       >
-        Please enter a valid ip or domain.
-        <br />
-        Example: 192.168.1.1 or example.com
+        Please enter a valid ipv4, ipv6 or domain name.
       </p>
       <!-- end ipv4 or domain invalid -->
     </div>
     <!-- end errors -->
   `,
 })
-export class IpOrDomainFormComponent {
-  ipOrDomainFormControl = new FormControl('', [
-    Validators.required,
-    ipOrDomainValidator,
-  ]);
-
-  form = new FormGroup({
-    ipOrDomain: this.ipOrDomainFormControl,
-  });
-
-  searching$!: Observable<boolean>;
+export class IpOrDomainFormComponent implements OnInit {
+  @Input() query!: string;
+  @Input() searching!: boolean;
+  @Input() error!: string;
   @Output() search = new EventEmitter<string>();
+
+  ipOrDomainFormControl!: FormControl;
+  form!: FormGroup;
 
   onSubmit(event: Event): void {
     event.preventDefault();
     if (this.ipOrDomainFormControl.invalid) return;
     this.search.emit(this.ipOrDomainFormControl.value);
+  }
+
+  ngOnInit(): void {
+    this.ipOrDomainFormControl = new FormControl(this.query, [
+      Validators.required,
+      ipOrDomainValidator,
+    ]);
+
+    this.form = new FormGroup({
+      ipOrDomain: this.ipOrDomainFormControl,
+    });
+
+    // setTimeout(() => {
+    //   this.search.emit(this.ipOrDomainFormControl.value);
+    // }, 1000);
   }
 }

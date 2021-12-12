@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { domainRegex, ipv4Regex } from 'src/app/shared/regex';
+import { domainRegex, ipv4Regex, ipv6Regex } from 'src/app/shared/regex';
 
 export const ipOrDomainValidator: ValidatorFn = (
   control: AbstractControl
@@ -8,8 +8,9 @@ export const ipOrDomainValidator: ValidatorFn = (
 
   if (domainRegex.test(ipOrDomain)) return null;
 
-
   if (ipv4Regex.test(ipOrDomain)) return null;
 
-  return { ipv4OrDomain: true };
+  if (ipv6Regex.test(ipOrDomain)) return null;
+
+  return { ipOrDomain: true };
 };

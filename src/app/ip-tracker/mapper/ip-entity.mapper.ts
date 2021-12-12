@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { EntityMapper } from 'src/app/shared/models';
 import { IpEntity } from '../models/ip-entity/ip-entity.model';
 import { LocationIpEntity } from '../models/ip-entity/location.model';
 import { Ip } from '../models/ip.model';

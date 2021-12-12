@@ -1,8 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { IpEntityMapper } from '../mapper/ip-entity.mapper';
-import { IpFilterDto } from '../models/ip-filter.dto';
 import { Ip } from '../models/ip.model';
 import { IpService } from '../services/ip.service';
 import { IpRepo } from './ip.repo';
@@ -14,22 +13,14 @@ export class IpImplRepo implements IpRepo {
     private readonly _service: IpService
   ) {}
 
-  searchByIpAddress(ipAddress: string): Observable<Ip | null> {
-    throw new Error('Method not implemented.');
-  }
-  searchByIpDomain(domain: string): Observable<Ip | null> {
-    throw new Error('Method not implemented.');
-  }
-
-  search(filter: IpFilterDto): Observable<Ip | null> {
-    // return this._service.search(filter).pipe(
-    //   switchMap((ipEntity) => of(this._mapper.mapToDomain(ipEntity))),
-    //   catchError(IpImplRepo._handleError)
-    // );
-    return of(null);
+  search(query: string): Observable<Ip> {
+    return this._service.search(query).pipe(
+      switchMap((ipEntity) => of(this._mapper.mapToDomain(ipEntity))),
+      catchError(this.handleError)
+    );
   }
 
-  private static _handleError(error: HttpErrorResponse) {
-    return of(null);
+  handleError(error: HttpErrorResponse): Observable<Ip> {
+    return throwError(() => "Your ip or domain provided not exist.");
   }
 }

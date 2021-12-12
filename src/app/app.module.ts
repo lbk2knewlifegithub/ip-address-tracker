@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './core/containers/app.component';
 import { CoreModule } from './core/core.module';
+import { IpEffects } from './ip-tracker/effects/ip.effects';
 import { metaReducers, ROOT_REDUCERS } from './reducers';
 
 @NgModule({
@@ -18,7 +19,7 @@ import { metaReducers, ROOT_REDUCERS } from './reducers';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule,
+    StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot(ROOT_REDUCERS, {
       metaReducers,
       runtimeChecks: {
@@ -28,9 +29,9 @@ import { metaReducers, ROOT_REDUCERS } from './reducers';
         strictActionTypeUniqueness: true,
       },
     }),
-    StoreRouterConnectingModule.forRoot(),
-    StoreDevtoolsModule.instrument({ name: 'NgRx Ip address tracker App' }),
+    EffectsModule.forRoot([IpEffects]),
     CoreModule,
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent],
 })

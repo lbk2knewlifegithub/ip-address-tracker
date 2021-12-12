@@ -5,7 +5,7 @@ import { Ip } from '../models/ip.model';
   selector: 'lbk-ip-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ul class="card">
+    <ul>
       <!--  ip address-->
       <li>
         <p>ip address</p>
@@ -35,6 +35,26 @@ import { Ip } from '../models/ip.model';
       <!--  end isp-->
     </ul>
   `,
+  styles: [
+    `
+      ul {
+        @apply bg-fill shadow-lg rounded-xl p-6 grid  text-center gap-6
+        tablet:text-left tablet:divide-x tablet:divide-gray-300 tablet:grid-cols-4 tablet:items-start;
+
+        li {
+          @apply tablet:pl-6 tablet:first:pl-0;
+
+          p {
+            @apply uppercase text-muted text-sm font-black tracking-wider;
+          }
+
+          h3 {
+            @apply font-black text-lg tracking-wide;
+          }
+        }
+      }
+    `,
+  ],
 })
 export class IpCardComponent {
   @Input('ip') ip!: Ip;

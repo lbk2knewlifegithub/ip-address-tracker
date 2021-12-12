@@ -17,15 +17,15 @@ const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
+  on(IpTrackerPageActions.enter, (state) => ({ ...state, loading: true })),
   on(IpTrackerPageActions.searchIp, (state, { query }) => ({
     ...state,
     loading: true,
     error: '',
     query,
   })),
-
   on(IpApiActions.searchIpSuccess, (state, { ip }) => ({
-    ...state,
+    query: state.query,
     loading: false,
     error: '',
   })),
