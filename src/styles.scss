@@ -27,7 +27,6 @@
     // border colors /////////////
     /////////////////////////////
     --border-fill: var(--grayish-blue);
-    --border-danger: var(--red);
   }
 
   //make default form look nice
@@ -38,7 +37,7 @@
 }
 
 input.ng-invalid.ng-touched {
-  @apply border-2 border-danger;
+  @apply border-2 border-red-500;
 }
 
 @layer components {

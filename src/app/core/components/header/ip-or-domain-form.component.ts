@@ -20,9 +20,8 @@ import { ipOrDomainValidator } from '../../validators';
     >
       <!-- input -->
       <input
-        #input
         [value]="query"
-        class="border-none h-full text-base py-4 pl-4 pr-20 w-full"
+        class="h-full overflow-hidden text-base py-4 pl-4 pr-20 w-full"
         formControlName="ipOrDomain"
         type="text"
         placeholder="Search for any IP adress or domain"
@@ -50,7 +49,7 @@ import { ipOrDomainValidator } from '../../validators';
     </form>
 
     <!-- errors -->
-    <div class="text-red-500 font-semibold italic text-left">
+    <div class="text-red-500 font-semibold italic text-left text-sm">
       <!-- server return error -->
       <p *ngIf="error">{{ error }}</p>
       <!-- end server return error -->
@@ -80,6 +79,7 @@ export class IpOrDomainFormComponent implements OnInit {
   @Input() searching!: boolean;
   @Input() error!: string;
   @Output() search = new EventEmitter<string>();
+  @Output() errorChange = new EventEmitter<string>();
 
   ipOrDomainFormControl!: FormControl;
   form!: FormGroup;

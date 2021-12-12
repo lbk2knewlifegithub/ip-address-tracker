@@ -49,7 +49,6 @@ module.exports = {
         dark: withOpacity("--bg-dark"),
       },
       borderColor: {
-        danger: withOpacity("--border-danger"),
       },
     },
   },
