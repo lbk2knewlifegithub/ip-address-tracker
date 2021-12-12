@@ -1,9 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
-// CUSTOM FONT HERE
-// @import "fonts/dm-mono";
-// @import "fonts/lora";
 @import "tailwindcss/utilities";
 
 @layer base {
@@ -11,31 +7,21 @@
     // colors
     --white: 0, 0%, 100%;
     --black: 0, 0% 0%;
-    --red: 0, 100%, 74%;
-    --green: 154, 59%, 51%;
-    --blue: 248, 32%, 49%;
-    --dark-blue: 249, 10%, 26%;
-    --grayish-blue: 246, 25%, 77%;
+    --very-dark-gray: 0, 0%, 17%;
+    --dark-gray: 0, 0%, 59%;
 
     ////////////////////
     // text colors /////
     ////////////////////
-    --text-fill: var(--white);
-    --text-muted: var(--grayish-blue);
-    --text-inverted: var(--gray-blue);
-    --text-danger: var(--red);
+    --text-fill: var(--very-dark-gray);
+    --text-muted: var(--dark-gray);
+    --text-inverted: var(--white);
 
     /////////////////////////////
     // background colors /////////
     /////////////////////////////
-    --bg-fill: var(--red);
-    --bg-form: var(--white);
-
-    /////////////////////////////
-    // background button colors /////////
-    /////////////////////////////
-    --bg-button-primary: var(--blue);
-    --bg-button-success: var(--green);
+    --bg-fill: var(--white);
+    --bg-dark: var(--very-dark-gray);
 
     /////////////////////////////
     // border colors /////////////
@@ -45,10 +31,10 @@
   }
 
   //make default form look nice
-  [type="text"],
-  [type="email"] {
-    @apply w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500;
-  }
+  // [type="text"],
+  // [type="email"] {
+  //   @apply w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500;
+  // }
 }
 
 input.ng-invalid.ng-touched {

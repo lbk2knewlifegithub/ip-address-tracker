@@ -23,51 +23,39 @@ module.exports = {
     container: {
       center: true,
       padding: {
-        DEFAULT: "1rem",
-        sm: "2rem",
-        lg: "4rem",
-        xl: "5rem",
-        "2xl": "6rem",
+        DEFAULT: "2rem",
+        desktop: "0rem",
       },
     },
     extend: {
       screens: {
         tablet: "768px",
-        desktop: "1440px",
+        desktop: "1024px",
       },
       // create custom fonts here
       fontFamily: {
-        heading: "'LoraRegular', 'serif'",
-        mono: ["'DMMonoRegular'", ...defaultTheme.fontFamily.mono],
+        mono: ["'Rubik'", ...defaultTheme.fontFamily.mono],
       },
       // create custom text colors here
       textColor: {
         fill: withOpacity("--text-fill"),
         muted: withOpacity("--text-muted"),
         inverted: withOpacity("--text-inverted"),
+        danger: withOpacity("--text-danger"),
       },
       // create custom background colors here
       backgroundColor: {
         fill: withOpacity("--bg-fill"),
-        footer: withOpacity("--bg-footer"),
-        "button-accent": withOpacity("--bg-button-accent"),
-        "button-accent-hover": withOpacity("--bg-button-accent-hover"),
-        "button-muted": withOpacity("--bg-button-muted"),
+        dark: withOpacity("--bg-dark"),
       },
       borderColor: {
         danger: withOpacity("--border-danger"),
-      },
-      // create custom gradient color here
-      gradientColorStops: {
-        hue: withOpacity("--color-fill"),
       },
     },
   },
   // custom variants
   variants: {
-    extend: {
-      backgroundColor: ["active"],
-    },
+    extend: {},
   },
   plugins: [
     require("@tailwindcss/forms"),
@@ -78,7 +66,7 @@ module.exports = {
         ".container": {
           maxWidth: "100%",
           "@screen desktop": {
-            maxWidth: "1440px",
+            maxWidth: "1024px",
           },
         },
       });

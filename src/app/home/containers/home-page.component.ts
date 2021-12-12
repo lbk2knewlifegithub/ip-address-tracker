@@ -7,11 +7,11 @@ import { MapComponent } from '../components';
   template: `
     <main>
       <!--  ip-card-->
-      <lbk-ip-card></lbk-ip-card>
+      <!-- <lbk-ip-card></lbk-ip-card> -->
       <!--  end ip-card-->
 
       <!-- map -->
-      <lbk-map #map></lbk-map>
+      <!-- <lbk-map #map></lbk-map> -->
       <!-- end map -->
     </main>
   `,
